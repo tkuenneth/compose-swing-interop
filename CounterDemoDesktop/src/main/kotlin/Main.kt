@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -41,7 +42,9 @@ fun main() = application {
 fun ApplicationScope.App() {
     val counter by counterFlow.collectAsState()
     Window(
-        onCloseRequest = ::exitApplication, title = stringResource(Res.string.app_name)
+        state = WindowState(
+            width = 400.dp, height = 200.dp
+        ), onCloseRequest = ::exitApplication, title = stringResource(Res.string.app_name)
     ) {
         MaterialTheme {
             Surface(color = MaterialTheme.colorScheme.background) {
@@ -61,7 +64,7 @@ fun ApplicationScope.App() {
                         }
 
                     }
-                    Button(modifier = Modifier.padding(vertical = 16.dp), onClick = ::increaseCounter) {
+                    Button(modifier = Modifier.padding(bottom = 16.dp), onClick = ::increaseCounter) {
                         Text(text = stringResource(Res.string.click))
                     }
                 }
