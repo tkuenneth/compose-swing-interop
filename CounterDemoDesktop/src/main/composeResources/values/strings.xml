@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CounterDemoDesktop</string>
+    <string name="click">Click</string>
+    <string name="not_clicked">Not clicked yet</string>
+</resources>
