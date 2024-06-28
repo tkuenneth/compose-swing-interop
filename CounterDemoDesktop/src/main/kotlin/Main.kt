@@ -19,13 +19,13 @@ import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
+import counterdemodesktop.generated.resources.Res
+import counterdemodesktop.generated.resources.app_name
+import counterdemodesktop.generated.resources.click
+import counterdemodesktop.generated.resources.not_clicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import menubardemo.generated.resources.Res
-import menubardemo.generated.resources.app_name
-import menubardemo.generated.resources.click
-import menubardemo.generated.resources.not_clicked
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 
