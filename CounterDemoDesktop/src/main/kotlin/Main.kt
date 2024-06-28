@@ -62,7 +62,6 @@ fun ApplicationScope.App() {
                         } else {
                             Text(text = counter.toString(), style = MaterialTheme.typography.displayLarge)
                         }
-
                     }
                     Button(modifier = Modifier.padding(bottom = 16.dp), onClick = ::increaseCounter) {
                         Text(text = stringResource(Res.string.click))
