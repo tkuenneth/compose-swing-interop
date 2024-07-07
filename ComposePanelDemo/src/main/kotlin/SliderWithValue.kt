@@ -13,6 +13,11 @@ import androidx.compose.ui.unit.dp
 
 @Preview
 @Composable
+fun SliderWithValuePreview() {
+    SliderWithValue()
+}
+
+@Composable
 fun SliderWithValue(
     value: Float = 1F, callback: (Float) -> Unit = {}
 ) {
