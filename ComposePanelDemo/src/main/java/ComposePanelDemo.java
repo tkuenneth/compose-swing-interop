@@ -17,17 +17,17 @@ public class ComposePanelDemo extends JFrame {
         box.add(Box.createVerticalStrut(8));
         JButton button = new JButton("+1");
         box.add(button);
-        SliderWithValueWrapper wrapper = new SliderWithValueWrapper(7);
-        wrapper.addPropertyChangeListener(SliderWithValueWrapperKt.CURRENT_VALUE_PROPERTY, evt -> {
+        SliderWithValue sliderWithValue = new SliderWithValue();
+        sliderWithValue.addPropertyChangeListener(SliderWithValue.CUSTOM_PROPERTY, evt -> {
             updateText(label, (int) evt.getNewValue());
         });
-        updateText(label, wrapper.getInitialValue());
+        updateText(label, sliderWithValue.getCustomProperty());
         button.addActionListener(e -> {
-            int newValue = wrapper.getCurrentValue() + 1;
-            wrapper.setCurrentValue(newValue <= 10 ? newValue : 1);
+            int newValue = sliderWithValue.getCustomProperty() + 1;
+            sliderWithValue.setCustomProperty(newValue <= 10 ? newValue : 1);
         });
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.add(wrapper, BorderLayout.CENTER);
+        contentPanel.add(sliderWithValue, BorderLayout.CENTER);
         contentPanel.add(box, BorderLayout.SOUTH);
         setContentPane(contentPanel);
         pack();
