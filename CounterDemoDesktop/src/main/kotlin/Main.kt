@@ -1,5 +1,7 @@
 package de.thomaskuenneth.counterdemodesktop
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,9 +10,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
@@ -19,14 +19,10 @@ import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import counterdemodesktop.generated.resources.Res
-import counterdemodesktop.generated.resources.app_name
-import counterdemodesktop.generated.resources.click
-import counterdemodesktop.generated.resources.not_clicked
+import counterdemodesktop.generated.resources.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 
 private val mutableStateFlow: MutableStateFlow<Int> = MutableStateFlow(0)
@@ -35,9 +31,9 @@ private fun increaseCounter() = mutableStateFlow.update { it + 1 }
 
 fun main() = application {
     App()
+    // App2()
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ApplicationScope.App() {
     val counter by counterFlow.collectAsState()
@@ -68,6 +64,41 @@ fun ApplicationScope.App() {
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun ApplicationScope.App2() {
+    Window(onCloseRequest = ::exitApplication) {
+        StateDemo()
+    }
+}
+
+@Composable
+@Preview
+fun StateDemo() {
+    val toggle: MutableState<Boolean> = remember { mutableStateOf(false) }
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .background(color = if (toggle.value) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.background),
+        contentAlignment = Alignment.Center
+    ) {
+        Button(onClick = { toggle.value = !toggle.value }) {
+            Text(text = stringResource(Res.string.toggle))
+        }
+    }
+}
+
+fun StateDemoUsingBy() {
+    var toggle: Boolean by remember { mutableStateOf(false) }
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .background(color = if (toggle) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.background),
+        contentAlignment = Alignment.Center
+    ) {
+        Button(onClick = { toggle = !toggle }) {
+            Text(text = stringResource(Res.string.toggle))
         }
     }
 }
