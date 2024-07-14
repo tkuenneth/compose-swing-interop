@@ -6,27 +6,25 @@ import java.awt.BorderLayout
 import java.awt.Dimension
 import javax.swing.JPanel
 
-const val CURRENT_VALUE_PROPERTY = "myCustomProperty"
+class SliderWithValueWrapper(initialValue: Int = 5) : JPanel(BorderLayout()) {
 
-class SliderWithValueWrapper(val initialValue: Int) : JPanel(BorderLayout()) {
-
-    var currentValue: Int = initialValue
+    var customProperty: Int = initialValue
         set(value) {
-            firePropertyChange(CURRENT_VALUE_PROPERTY, field, value)
+            firePropertyChange(SliderWithValue.CUSTOM_PROPERTY, field, value)
             field = value
         }
 
-    private val currentValueFloat = MutableStateFlow(currentValue.toFloat())
+    private val currentValueFloat = MutableStateFlow(customProperty.toFloat())
 
     init {
         val composePanel = ComposePanel()
         composePanel.setContent {
             val state by currentValueFloat.collectAsState()
             SliderWithValue(state, ({ newFloat ->
-                currentValue = newFloat.toInt()
+                customProperty = newFloat.toInt()
                 currentValueFloat.value = newFloat
             }))
-            addPropertyChangeListener(CURRENT_VALUE_PROPERTY) { event ->
+            addPropertyChangeListener(SliderWithValue.CUSTOM_PROPERTY) { event ->
                 (event.newValue as Int).run {
                     currentValueFloat.value = toFloat()
                 }
