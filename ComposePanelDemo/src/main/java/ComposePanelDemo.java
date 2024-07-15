@@ -17,7 +17,8 @@ public class ComposePanelDemo extends JFrame {
         box.add(Box.createVerticalStrut(8));
         JButton button = new JButton("+1");
         box.add(button);
-        SliderWithValue sliderWithValue = new SliderWithValue();
+        // SliderWithValue sliderWithValue = new SliderWithValue();
+        SliderWithValueWrapper sliderWithValue = new SliderWithValueWrapper();
         sliderWithValue.addPropertyChangeListener(SliderWithValue.CUSTOM_PROPERTY, evt -> {
             updateText(label, (int) evt.getNewValue());
         });
