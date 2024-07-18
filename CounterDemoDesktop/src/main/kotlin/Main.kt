@@ -90,6 +90,7 @@ fun StateDemo() {
     }
 }
 
+@Composable
 fun StateDemoUsingBy() {
     var toggle: Boolean by remember { mutableStateOf(false) }
     Box(
