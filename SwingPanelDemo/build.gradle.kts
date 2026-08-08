@@ -17,6 +17,8 @@ repositories {
 
 dependencies {
     implementation("com.github.sarxos:webcam-capture:0.3.12")
+    // Default BridJ driver is x86_64-only; native driver uses AVFoundation on macOS/arm64
+    implementation("io.github.eduramiba:webcam-capture-driver-native:1.3.1")
 
     implementation(compose.desktop.currentOs)
     implementation(compose.components.resources)

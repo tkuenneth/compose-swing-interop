@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import eu.thomaskuenneth.swingpaneldemo.swingpaneldemo.generated.resources.Res
@@ -38,24 +37,12 @@ fun ApplicationScope.App() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                var width by remember { mutableStateOf(0.dp) }
-                var height by remember { mutableStateOf(0.dp) }
                 var isImageSizeDisplayed by remember { mutableStateOf(false) }
-                val density = LocalDensity.current
-                SwingPanel(background = Color.Red, factory = {
-                    createWebcamPanel(
-                        isImageSizeDisplayed = isImageSizeDisplayed
-                    ).also {
-                        with(density) {
-                            it.preferredSize.let { preferredSize ->
-                                width = preferredSize.width.toDp()
-                                height = preferredSize.height.toDp()
-                            }
-                        }
-                    }
-                }, update = {
-                    it.isImageSizeDisplayed = isImageSizeDisplayed
-                }, modifier = Modifier.size(width = width, height = height)
+                SwingPanel(
+                    background = Color.Red,
+                    factory = { createWebcamPanel(isImageSizeDisplayed = false) },
+                    update = { it.isImageSizeDisplayed = isImageSizeDisplayed },
+                    modifier = Modifier.size(width = 640.dp, height = 480.dp),
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 TextButton(onClick = { isImageSizeDisplayed = !isImageSizeDisplayed }) {

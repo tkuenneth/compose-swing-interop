@@ -1,9 +1,16 @@
-
-**/misc.xml
-**/gradle.xml
-**/misc.xml
-**/vcs.xml
-**/out/
-CounterDemoSwing/CounterDemoSwing.iml
-CounterDemoSwing/.idea/modules.xml
 .DS_Store
+**/.DS_Store
+**/.kotlin/
+**/out/
+*.iml
+
+# IntelliJ / local IDE state (shared across modules)
+**/.idea/workspace.xml
+**/.idea/misc.xml
+**/.idea/compiler.xml
+**/.idea/jarRepositories.xml
+**/.idea/modules.xml
+**/.idea/gradle.xml
+
+# CounterDemoSwing (no project-level Gradle gitignore)
+CounterDemoSwing/out/
